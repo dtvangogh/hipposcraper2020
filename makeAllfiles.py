@@ -17,7 +17,7 @@ class InstaBot:
 		self.driver.find_element_by_xpath('/html/body/main/article/div/form/div[4]/input')\
             .click()
 	##CHOICE PROJECT PAGE
-		self.driver.get("https://intranet.hbtn.io/projects/227")
+		self.driver.get("https://intranet.hbtn.io/projects/242")
 	##GET REPO NAME
 		try:
 			repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/ul[2]/li[1]/code').text
@@ -34,6 +34,12 @@ class InstaBot:
 			print(repo_name)
 		except NoSuchElementException:
 				pass
+		try:
+			repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul/li[1]/code').text
+			print(repo_name)
+		except NoSuchElementException:
+				pass
+
 	##GET DIRECTORY NAME
 		try:
 			directory_name = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/ul[2]/li[2]/code').text
@@ -50,6 +56,11 @@ class InstaBot:
 			print(directory_name)
 		except NoSuchElementException:
 				pass
+		try:
+			directory_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul/li[2]/code').text
+			print(directory_name)
+		except NoSuchElementException:
+				pas
 
 	##GET FILE NAME
 
@@ -680,6 +691,8 @@ class InstaBot:
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
 				pass
+			except UnboundLocalError:
+				pass
 			lookup = 'gcc'
 			try:
 				myFile = open('1-main.c')
@@ -696,6 +709,8 @@ class InstaBot:
 				myFile = open('1-main.c', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
+				pass
+			except UnboundLocalError:
 				pass
 			lookup = 'gcc'
 			try:
@@ -714,6 +729,8 @@ class InstaBot:
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
 				pass
+			except UnboundLocalError:
+				pass
 			lookup = 'gcc'
 			try:
 				myFile = open('3-main.c')
@@ -730,6 +747,8 @@ class InstaBot:
 				myFile = open('3-main.c', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
+				pass
+			except UnboundLocalError:
 				pass
 			lookup = 'gcc'
 			try:
@@ -748,6 +767,8 @@ class InstaBot:
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
 				pass
+			except UnboundLocalError:
+				pass
 			lookup = 'gcc'
 			try:
 				myFile = open('5-main.c')
@@ -764,6 +785,8 @@ class InstaBot:
 				myFile = open('5-main.c', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
+				pass
+			except UnboundLocalError:
 				pass
 			lookup = 'gcc'
 			try:
@@ -782,6 +805,8 @@ class InstaBot:
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
 				pass
+			except UnboundLocalError:
+				pass
 			lookup = 'gcc'
 			try:
 				myFile = open('7-main.c')
@@ -798,6 +823,8 @@ class InstaBot:
 				myFile = open('7-main.c', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
+				pass
+			except UnboundLocalError:
 				pass
 			lookup = 'gcc'
 			try:
@@ -816,6 +843,8 @@ class InstaBot:
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
 				pass
+			except UnboundLocalError:
+				pass
 			lookup = 'gcc'
 			try:
 				myFile = open('9-main.c')
@@ -832,6 +861,8 @@ class InstaBot:
 				myFile = open('9-main.c', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
+				pass
+			except UnboundLocalError:
 				pass
 			lookup = 'gcc'
 			try:
@@ -850,6 +881,8 @@ class InstaBot:
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
 				pass
+			except UnboundLocalError:
+				pass
 			lookup = 'gcc'
 			try:
 				myFile = open('11-main.c')
@@ -866,6 +899,8 @@ class InstaBot:
 				myFile = open('11-main.c', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
+				pass
+			except UnboundLocalError:
 				pass
 			lookup = 'gcc'
 			try:
@@ -884,6 +919,8 @@ class InstaBot:
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
 				pass
+			except UnboundLocalError:
+				pass
 			lookup = 'gcc'
 			try:
 				myFile = open('13-main.c')
@@ -900,6 +937,8 @@ class InstaBot:
 				myFile = open('13-main.c', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
+				pass
+			except UnboundLocalError:
 				pass
 			lookup = 'gcc'
 			try:
@@ -918,6 +957,8 @@ class InstaBot:
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
 				pass
+			except UnboundLocalError:
+				pass
 			lookup = 'gcc'
 			try:
 				myFile = open('15-main.c')
@@ -934,6 +975,8 @@ class InstaBot:
 				myFile = open('15-main.c', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
+				pass
+			except UnboundLocalError:
 				pass
 			lookup = 'gcc'
 			try:
@@ -952,6 +995,8 @@ class InstaBot:
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
 				pass
+			except UnboundLocalError:
+				pass
 			lookup = 'gcc'
 			try:
 				myFile = open('17-main.c')
@@ -968,6 +1013,8 @@ class InstaBot:
 				myFile = open('17-main.c', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
+				pass
+			except UnboundLocalError:
 				pass
 			lookup = 'gcc'
 			try:
@@ -986,6 +1033,8 @@ class InstaBot:
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
 				pass
+			except UnboundLocalError:
+				pass
 			lookup = 'gcc'
 			try:
 				myFile = open('99-main.c')
@@ -1002,6 +1051,8 @@ class InstaBot:
 				myFile = open('99-main.c', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
+				pass
+			except UnboundLocalError:
 				pass
 #MAKE MAIN.PY FILES
 		else:
@@ -1162,7 +1213,9 @@ class InstaBot:
 				myFile = open('0-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('1-main.py')
@@ -1179,7 +1232,9 @@ class InstaBot:
 				myFile = open('1-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('2-main.py')
@@ -1196,7 +1251,9 @@ class InstaBot:
 				myFile = open('2-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('3-main.py')
@@ -1213,7 +1270,9 @@ class InstaBot:
 				myFile = open('3-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('4-main.py')
@@ -1230,7 +1289,9 @@ class InstaBot:
 				myFile = open('4-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('5-main.py')
@@ -1247,7 +1308,9 @@ class InstaBot:
 				myFile = open('5-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('6-main.py')
@@ -1264,7 +1327,9 @@ class InstaBot:
 				myFile = open('6-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('7-main.py')
@@ -1281,7 +1346,9 @@ class InstaBot:
 				myFile = open('7-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('8-main.py')
@@ -1298,7 +1365,9 @@ class InstaBot:
 				myFile = open('8-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('9-main.py')
@@ -1315,7 +1384,9 @@ class InstaBot:
 				myFile = open('9-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('10-main.py')
@@ -1332,7 +1403,9 @@ class InstaBot:
 				myFile = open('10-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('11-main.py')
@@ -1349,7 +1422,9 @@ class InstaBot:
 				myFile = open('11-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('12-main.py')
@@ -1366,7 +1441,9 @@ class InstaBot:
 				myFile = open('12-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('13-main.py')
@@ -1383,7 +1460,9 @@ class InstaBot:
 				myFile = open('13-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('14-main.py')
@@ -1400,7 +1479,9 @@ class InstaBot:
 				myFile = open('14-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('15-main.py')
@@ -1417,7 +1498,9 @@ class InstaBot:
 				myFile = open('15-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('16-main.py')
@@ -1434,7 +1517,9 @@ class InstaBot:
 				myFile = open('16-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('17-main.py')
@@ -1451,7 +1536,9 @@ class InstaBot:
 				myFile = open('17-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('18-main.py')
@@ -1468,7 +1555,9 @@ class InstaBot:
 				myFile = open('18-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 			lookup = './'
 			try:
 				myFile = open('99-main.py')
@@ -1485,6 +1574,8 @@ class InstaBot:
 				myFile = open('99-main.py', 'w')
 				myFile.writelines(data[1:location_minus1])
 			except FileNotFoundError:
-				print('')
+				pass
+			except UnboundLocalError:
+				pass
 
 InstaBot('1661@holbertonschool.com', password)
