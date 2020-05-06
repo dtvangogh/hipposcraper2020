@@ -17,7 +17,7 @@ class InstaBot:
 		self.driver.find_element_by_xpath('/html/body/main/article/div/form/div[4]/input')\
             .click()
 	##CHOICE PROJECT PAGE
-		self.driver.get("https://intranet.hbtn.io/projects/241")
+		self.driver.get("https://intranet.hbtn.io/projects/223")
 	##GET REPO NAME
 		try:
 			repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/ul[2]/li[1]/code').text
@@ -56,11 +56,11 @@ class InstaBot:
 			print(directory_name)
 		except NoSuchElementException:
 				pass
-		try:
-			directory_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul/li[2]/code').text
-			print(directory_name)
-		except NoSuchElementException:
-				pass
+		##try:
+		##	directory_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul/li[2]/code').text
+		##	print(directory_name)
+		##except NoSuchElementException:
+			##	pass
 
 	##GET FILE NAME
 
