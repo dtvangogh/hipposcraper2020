@@ -17,7 +17,7 @@ class InstaBot:
 		self.driver.find_element_by_xpath('/html/body/main/article/div/form/div[4]/input')\
             .click()
 	##CHOICE PROJECT PAGE
-		self.driver.get("https://intranet.hbtn.io/projects/242")
+		self.driver.get("https://intranet.hbtn.io/projects/241")
 	##GET REPO NAME
 		try:
 			repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/ul[2]/li[1]/code').text
@@ -34,11 +34,11 @@ class InstaBot:
 			print(repo_name)
 		except NoSuchElementException:
 				pass
-		try:
-			repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul/li[1]/code').text
-			print(repo_name)
-		except NoSuchElementException:
-				pass
+		##try:
+		##	repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul/li[1]/code').text
+		##	print(repo_name)
+		##except NoSuchElementException:
+			##	pass
 
 	##GET DIRECTORY NAME
 		try:
@@ -60,7 +60,7 @@ class InstaBot:
 			directory_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul/li[2]/code').text
 			print(directory_name)
 		except NoSuchElementException:
-				pas
+				pass
 
 	##GET FILE NAME
 
@@ -370,8 +370,10 @@ class InstaBot:
 		except NoSuchElementException:
 				pass
 ##PRINT ARRAY
-		directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
-		print(directory_path)
+		if repo_name != 'holbertonschool-lower_level_programming':
+			repo_name == 'holbertonschool-higher_level_programming'
+			directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
+			print(directory_path)
 #MAKE DIRECTORY
 		if not os.path.exists(directory_path):
 			os.makedirs(directory_path)
@@ -1059,6 +1061,7 @@ class InstaBot:
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/pre/code').text
 				print("main file made")
+				print(main_file)
 				f= open("0-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
