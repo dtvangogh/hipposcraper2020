@@ -1,82 +1,64 @@
-Press a button and get the directories, project files, and main.c or main.c files made for your project of choice.
-In the line that says  "choice project page" , just copy and paste the holberton project url you want on line 20 .
-to access the intranet, you need a username and password so to run the files you need to create a separate file called
+## HIPPOSWEEPER
+### Description
+A selenium script that creates repositories, directory names, project files, and main.c/main.py files
 
- "secrets" and inside the file write
+### Prerequisites
+Pip3 install selenium
+download chromedriver from http://chromedriver.storage.googleapis.com/index.html?path=78.0.3904.105/
+unzip chromedriver so that file appears in downloads folder
+sudo mv ~/Downloads/Chromedriver /usr/local/bin
+if this doesn't work try typing out the ~ with the full path
+if you get stuck watch this video: https://www.youtube.com/watch?v=d2GBO_QjRlo&t=302s
+if you aren't on a mac sorry :n(
 
-password = "typepasswordhere"
+File Contents
+This repository contains the following files:
 
-for your username, remove mine and replace yours.
+|   **File**   |   **Description**   |
+| -------------- | --------------------- |
+|sweep.py | the main file. Run by using python3 sweep.py |
+|secrets.py | this is where you should store your password. Enter your password for password = 'insertPasswordHere'
+|seleniumtest.py | just to test if your selenium is even working. compile with: python3 seleniumtest.py
 
-To use selenium
+### Usage and Installation
+Clone the repository, compile with compilation flags, listed below, then run the executable.
+```
+$ git clone https://github.com/dtvangogh/hipposweeper
+```
+For username enter your own username
+```
+InstaBot('1661@holbertonschool.com', password)
+```
+### Compilation
+This code was compiled this way:
+` $ python3 sweep.py 243 `
+3rd Argument will choice what project you want. Project number is in the URL. Always a 3 digit number
 
-This part might be annoying for some of you.
-Follow this tutorial to get started with selenium.
-https://www.youtube.com/watch?v=d2GBO_QjRlo&t=302s
+###### Example usage
 
-for mac type in terminal
+```
+dtvan@dtvangogh:SWEEPER$ python3 sweep.py 243
 
-pip3 install selenium
-
-download chromedriver (if will be zipped file after it downloads unzip it so you have
-something called chromedriver in your Downloads)
-
-then move chromedriver to bin.
-sudo mv ~/Downloads/chromedriver /usr/local/bin
-if this doesn't work then instead of using ~ , write out the whole home directory.
-go to the seleniumtest.py file and run with
-python3 seleniumtest.py
-if that works then move on
-python3 makeAllfiles.py
-
-I haven't tested all project urls and the biggest issue is the directory_path variable.
-
-Sometimes the xpaths on holberton pages arent consistent so if you are experiencing an error,
-
-find directory_path =
-
-in makeAllfiles.py and you can type path yourself.
-
-example: directory_path = 'holbertonschool-low-level/0x05sdfdas/'
-
-The youtube video i posted guides you through the process.
-main_file_array = ['0-main.c', '1-main.c', '2-main.c', '3-main.c', '4-main.c', '5-main.c', '6-main.c', '7-main.c', '8-main.c', '9-main.c', '10-main.c', '11-main.c', '12-main.c', '13-main.c', '14-main.c', '15-main.c', '16-main.c', '17-main.c', '18-main.c', '19-main.c']
+"intranet.hbtn.io/projects/243"
+IF DIRECTORY IS INCORRECT WRITE DIRECTORY NAME AS 4TH ARGUMENT
+Foundations - Higher-level programming ― Python
+0x04-python-more_data_structures
+matrix
+matrix
+0x04-python-more_data_structures
+/users/qpv2/holbertonschool-higher_level_programming/0x04-python-more_data_structures has been created
+cd into /users/qpv2/holbertonschool-higher_level_programming/0x04-python-more_data_structures
+Project files created:
+['0-square_matrix_simple.py', '1-search_replace.py', '2-uniq_add.py', '3-common_elements.py', '4-only_diff_elements.py', '5-number_keys.py', '6-print_sorted_dictionary.py',
+ '7-update_dictionary.py', '8-simple_delete.py', '9-multiply_by_2.py', '10-best_score.py', '11-mutiply_list_map.py', 'roman_string', '1-search_replace.py', '2-uniq_add.py',
+ '3-common_elements.py', '4-only_diff_elements.py', '5-number_keys.py', '6-print_sorted_dictionary.py', '7-update_dictionary.py', '8-simple_delete.py', '9-multiply_by_2.py'
+, '10-best_score.py', '11-mutiply_list_map.py', 'roman_string', '0-square_matrix_simple.py', 'search', 'search', '2-uniq_add.py', '3-common_elements.py', '4-only_diff_elements.py', '5-number_keys.py', '6-print_sorted_dictionary.py', 'value', '8-simple_delete.py', '9-multiply_by_2.py', 'None', '11-mutiply_list_map.py', 'roman_string']
+README.md made
+13 main.py files created
+```
+```
 
 
-main_file_array = []
-		main_file_array.append('0-main.c')
-		main_file_array.append('1-main.c')
-		main_file_array.append('2-main.c')
-		main_file_array.append('3-main.c')
-		main_file_array.append('4-main.c')
-		main_file_array.append('5-main.c')
-		main_file_array.append('6-main.c')
-		main_file_array.append('7-main.c')
-		main_file_array.append('8-main.c')
-		main_file_array.append('9-main.c')
-		main_file_array.append('10-main.c')
-		main_file_array.append('11-main.c')
-		main_file_array.append('12-main.c')
-		main_file_array.append('13-main.c')
-		main_file_array.append('14-main.c')
-		main_file_array.append('15-main.c')
-		for main_file_array in main_file_array:
-			try:
-				lookup = 'gcc'
-				myFile = open(main_file_array)
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = '$ cat'
-				myFile = open(main_file_array)
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open(main_file_array, 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open(main_file_array, 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
+
+### Authors
+DT Van
