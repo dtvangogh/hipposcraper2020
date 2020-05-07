@@ -16,7 +16,7 @@ if you get stuck watch this video:
 
 if you aren't on a mac sorry :n(
 
-File Contents
+### File Contents
 This repository contains the following files:
 
 |   **File**   |   **Description**   |
