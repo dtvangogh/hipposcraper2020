@@ -1,10 +1,11 @@
 import os
-import array
+from array import array
 from selenium import webdriver
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException
 from secrets import password
-
+##BUGS: PROJECT 226, doesn't fetch question 3 and 4
+##BUGS:
 class InstaBot:
 	##LOGIN AND GO TO PROJECT PAGE
 	def __init__(self, username, password):
@@ -17,23 +18,18 @@ class InstaBot:
 		self.driver.find_element_by_xpath('/html/body/main/article/div/form/div[4]/input')\
             .click()
 	##CHOICE PROJECT PAGE
-		self.driver.get("https://intranet.hbtn.io/projects/223")
+		self.driver.get("https://intranet.hbtn.io/projects/226")
 	##GET REPO NAME
 		try:
-			repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/ul[2]/li[1]/code').text
+			repo_name = self.driver.find_element_by_xpath('/html/body/main/article/p[1]/small').text
 			print(repo_name)
+			if repo_name == 'Foundations - Low-level programming & Algorithm ― Hatching out':
+				repo_name = 'holbertonschool-low_level_programming'
+			elif repo_name =='Foundations - Higher-level programming ― Python':
+				repo_name = 'holbertonschool-higher_level_programming'
 		except NoSuchElementException:
 				pass
-		try:
-			repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/ul/li[1]/code').text
-			print(repo_name)
-		except NoSuchElementException:
-				pass
-		try:
-			repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul[2]/li[1]/code').text
-			print(repo_name)
-		except NoSuchElementException:
-				pass
+
 		##try:
 		##	repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul/li[1]/code').text
 		##	print(repo_name)
@@ -370,10 +366,7 @@ class InstaBot:
 		except NoSuchElementException:
 				pass
 ##PRINT ARRAY
-		if repo_name != 'holbertonschool-lower_level_programming':
-			repo_name == 'holbertonschool-higher_level_programming'
-			directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
-			print(directory_path)
+		directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
 #MAKE DIRECTORY
 		if not os.path.exists(directory_path):
 			os.makedirs(directory_path)
@@ -385,8 +378,12 @@ class InstaBot:
 		print("Project files created:")
 		print(file_name_array)
 		for file_name_array in file_name_array:
-    			with open("{}".format(file_name_array), "w") as f:
-        			f.write("This is my first line of code")
+			if repo_name == 'holbertonschool-low_level_programming':
+    				with open("{}".format(file_name_array), "w") as f:
+        				f.write("#include holberton.h\n\n/**\n*\n*\n**/\n")
+			elif repo_name == 'holbertonschool-higher_level_programming':
+    				with open("{}".format(file_name_array), "w") as f:
+        				f.write("#!/usr/bin/python3\n")
 		f = open('README.md', "a")
 		f.write("README.md")
 		print("README.md made")
@@ -394,140 +391,141 @@ class InstaBot:
 		if repo_name == 'holbertonschool-low_level_programming':
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/pre/code').text
-				print("main file made")
+				main_C_file_count = 0
+				main_C_file_count += 1
 				f= open("0-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[2]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("1-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[3]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("2-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[4]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("3-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[5]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("4-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[6]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("5-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[7]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("6-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[8]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("7-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[9]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("8-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[10]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("9-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[11]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("10-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[12]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("11-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[13]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("12-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[14]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("13-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[15]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("14-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[16]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("15-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[17]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("16-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[18]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("17-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[19]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("18-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[20]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("19-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
@@ -537,1048 +535,365 @@ class InstaBot:
 		if repo_name == 'holbertonschool-low_level_programming':
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("0-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[2]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("1-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[3]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("2-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[4]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("3-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[5]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("4-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[6]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("5-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[7]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("6-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[8]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("7-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[9]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("8-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[10]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("9-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[11]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("10-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[12]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("11-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[13]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("12-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[14]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("13-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[15]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("14-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[16]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("15-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[17]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("16-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[18]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("17-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[19]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("18-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[20]/div/pre/code').text
-				print("main file made")
+				main_C_file_count += 1
 				f= open("19-main.c", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
-	##EDIT MAIN.C FILES
-			lookup = 'gcc'
-			try:
-				myFile = open('0-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('0-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('0-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('0-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('1-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('1-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('1-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('1-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('2-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('2-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('2-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('2-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('3-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('3-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('3-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('3-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('4-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('4-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('4-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('4-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('5-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('5-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('5-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('5-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('6-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('6-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('6-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('6-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('7-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('7-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('7-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('7-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('8-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('8-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('8-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('8-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('9-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('9-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('9-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('9-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('10-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('10-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('10-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('10-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('11-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('11-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('11-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('11-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('12-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('12-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('12-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('12-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('13-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('13-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('13-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('13-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('14-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('14-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('14-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('14-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('15-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('15-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('15-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('15-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('16-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('16-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('16-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('16-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('17-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('17-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('17-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('17-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('18-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('18-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('18-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('18-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = 'gcc'
-			try:
-				myFile = open('99-main.c')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('99-main.c')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('99-main.c', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('99-main.c', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
+			print("{:d} main.c files created".format(main_C_file_count))
 #MAKE MAIN.PY FILES
 		else:
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/pre/code').text
-				print("main file made")
-				print(main_file)
+				main_PY_file_count = 0
+				main_PY_file_count += 1
 				f= open("0-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[2]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("1-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[3]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("2-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[4]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("3-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[5]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("4-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[6]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("5-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[7]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("6-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[8]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("7-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[9]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("8-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[10]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("9-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[11]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("10-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[12]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("11-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[13]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("12-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[14]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("13-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[15]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("14-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[16]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("15-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[17]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("16-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[18]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("17-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[19]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("18-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[20]/div/pre/code').text
-				print("main file made")
+				main_PY_file_count += 1
 				f= open("19-main.py", "w+")
 				f.write(main_file)
 			except NoSuchElementException:
 					pass
-	##EDIT MAIN FILES
-			lookup = './'
+			print("{:d} main.py files created".format(main_PY_file_count))
+##EDIT MAIN FILES
+##EDIT MAIN.PY
+		mainPY_file_array = []
+		mainPY_file_array.append('0-main.py')
+		mainPY_file_array.append('1-main.py')
+		mainPY_file_array.append('2-main.py')
+		mainPY_file_array.append('3-main.py')
+		mainPY_file_array.append('4-main.py')
+		mainPY_file_array.append('5-main.py')
+		mainPY_file_array.append('6-main.py')
+		mainPY_file_array.append('7-main.py')
+		mainPY_file_array.append('8-main.py')
+		mainPY_file_array.append('9-main.py')
+		mainPY_file_array.append('10-main.py')
+		mainPY_file_array.append('11-main.py')
+		mainPY_file_array.append('12-main.py')
+		mainPY_file_array.append('13-main.py')
+		mainPY_file_array.append('14-main.py')
+		mainPY_file_array.append('15-main.py')
+		for mainPY_file_array in mainPY_file_array:
 			try:
-				myFile = open('0-main.py')
+				lookup = './'
+				myFile = open(mainPY_file_array)
 				for gcc_location, line in enumerate(myFile, 1):
 						if lookup in line:
 								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('0-main.py')
+				lookup = '$ cat'
+				myFile = open(mainPY_file_array)
 				for cat_location, line in enumerate(myFile, 1):
 						if lookup in line:
 								cat_line_number = cat_location
-				myFile = open('0-main.py', 'r+')
+				myFile = open(mainPY_file_array, 'r+')
 				data = myFile.read().splitlines(True)
-				myFile = open('0-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
+				myFile = open(mainPY_file_array, 'w')
+				myFile.writelines(data[cat_line_number:location_minus1])
 			except FileNotFoundError:
 				pass
 			except UnboundLocalError:
 				pass
-			lookup = './'
+		mainC_file_array = []
+		mainC_file_array.append('0-main.c')
+		mainC_file_array.append('1-main.c')
+		mainC_file_array.append('2-main.c')
+		mainC_file_array.append('3-main.c')
+		mainC_file_array.append('4-main.c')
+		mainC_file_array.append('5-main.c')
+		mainC_file_array.append('6-main.c')
+		mainC_file_array.append('7-main.c')
+		mainC_file_array.append('8-main.c')
+		mainC_file_array.append('9-main.c')
+		mainC_file_array.append('10-main.c')
+		mainC_file_array.append('11-main.c')
+		mainC_file_array.append('12-main.c')
+		mainC_file_array.append('13-main.c')
+		mainC_file_array.append('14-main.c')
+		mainC_file_array.append('15-main.c')
+		for mainC_file_array in mainC_file_array:
 			try:
-				myFile = open('1-main.py')
+				lookup = 'gcc'
+				myFile = open(mainC_file_array)
 				for gcc_location, line in enumerate(myFile, 1):
 						if lookup in line:
 								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('1-main.py')
+				lookup = '$ cat'
+				myFile = open(mainC_file_array)
 				for cat_location, line in enumerate(myFile, 1):
 						if lookup in line:
 								cat_line_number = cat_location
-				myFile = open('1-main.py', 'r+')
+				myFile = open(mainC_file_array, 'r+')
 				data = myFile.read().splitlines(True)
-				myFile = open('1-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
+				myFile = open(mainC_file_array, 'w')
+				myFile.writelines(data[cat_line_number:location_minus1])
 			except FileNotFoundError:
 				pass
 			except UnboundLocalError:
 				pass
-			lookup = './'
-			try:
-				myFile = open('2-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('2-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('2-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('2-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('3-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('3-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('3-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('3-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('4-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('4-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('4-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('4-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('5-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('5-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('5-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('5-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('6-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('6-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('6-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('6-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('7-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('7-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('7-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('7-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('8-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('8-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('8-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('8-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('9-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('9-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('9-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('9-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('10-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('10-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('10-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('10-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('11-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('11-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('11-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('11-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('12-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('12-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('12-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('12-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('13-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('13-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('13-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('13-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('14-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('14-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('14-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('14-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('15-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('15-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('15-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('15-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('16-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('16-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('16-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('16-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('17-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('17-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('17-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('17-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('18-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('18-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('18-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('18-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
-			lookup = './'
-			try:
-				myFile = open('99-main.py')
-				for gcc_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								location_minus1 = gcc_location - 1
-				lookup = 'cat'
-				myFile = open('99-main.py')
-				for cat_location, line in enumerate(myFile, 1):
-						if lookup in line:
-								cat_line_number = cat_location
-				myFile = open('99-main.py', 'r+')
-				data = myFile.read().splitlines(True)
-				myFile = open('99-main.py', 'w')
-				myFile.writelines(data[1:location_minus1])
-			except FileNotFoundError:
-				pass
-			except UnboundLocalError:
-				pass
+
 
 InstaBot('1661@holbertonschool.com', password)
