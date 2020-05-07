@@ -30,7 +30,7 @@ Clone the repository, compile with compilation flags, listed below, then run the
 ```
 $ git clone https://github.com/dtvangogh/hipposweeper
 ```
-For username enter your own username
+For username enter your own username. Find this line at the last line of the sweep.py file
 ```
 InstaBot('1661@holbertonschool.com', password)
 ```
