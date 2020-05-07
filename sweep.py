@@ -382,17 +382,16 @@ class InstaBot:
 		try:
 			directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
 		except UnboundLocalError:
-			if len(argv) < 2:
-				print("DIRECTORY NAME UNKNOWN ENTER THE DIRECTORY NAME AS 4TH ARGUMENT")
-				print("DIRECTORY NAME UNKNOWN ENTER THE DIRECTORY NAME AS 4TH ARGUMENT")
-			else:
-				print("")
-			if len(argv) > 1:
-				print("Inserted directory manually: {:s}".format(argv[2]))
-				directory_name = argv[2]
-				directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
 			pass
-			pass
+			##if len(argv) < 2:
+			##	print("DIRECTORY NAME UNKNOWN ENTER THE DIRECTORY NAME AS 4TH ARGUMENT")
+			##	print("DIRECTORY NAME UNKNOWN ENTER THE DIRECTORY NAME AS 4TH ARGUMENT")
+		#	else:
+			#	print("")
+			#if len(argv) > 1:
+				#print("Inserted directory manually: {:s}".format(argv[2]))
+			#	directory_name = argv[2]
+			#	directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
 
 # MAKE DIRECTORY
 		if not os.path.exists(directory_path):
