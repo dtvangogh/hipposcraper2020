@@ -1,6 +1,8 @@
 ## HIPPOSWEEPER
 ### Description
-A selenium script that creates repositories, directory names, project files, and main.c/main.py files
+A selenium script that creates repositories, directory names, project files, and main.c/main.py files.
+
+This script is going to open up chrome or a differnt webdriver or your choice, go to the intranet site, log in for you, go to the project page, and get the information it needs.
 
 ### Prerequisites
 Pip3 install selenium
