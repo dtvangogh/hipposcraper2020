@@ -1,6 +1,5 @@
 import os
 from sys import argv
-from project_url import url
 from array import array
 from selenium import webdriver
 from time import sleep
