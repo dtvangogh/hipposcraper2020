@@ -6,7 +6,9 @@ A selenium script that creates repositories, directory names, project files, and
 Pip3 install selenium
 download chromedriver from http://chromedriver.storage.googleapis.com/index.html?path=78.0.3904.105/
 unzip chromedriver so that file appears in downloads folder
+```
 sudo mv ~/Downloads/Chromedriver /usr/local/bin
+```
 if this doesn't work try typing out the ~ with the full path
 if you get stuck watch this video: https://www.youtube.com/watch?v=d2GBO_QjRlo&t=302s
 if you aren't on a mac sorry :n(
