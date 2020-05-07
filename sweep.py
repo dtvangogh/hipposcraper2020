@@ -1,13 +1,17 @@
 import os
+from sys import argv
+from project_url import url
 from array import array
 from selenium import webdriver
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException
 from secrets import password
-##BUGS: PROJECT 226, doesn't fetch question 3 and 4
-##BUGS:
+# BUGS: PROJECT 226, doesn't fetch question 3 and 4
+# BUGS:
+
+
 class InstaBot:
-	##LOGIN AND GO TO PROJECT PAGE
+	# LOGIN AND GO TO PROJECT PAGE
 	def __init__(self, username, password):
 		self.driver = webdriver.Chrome()
 		self.driver.get("https://intranet.hbtn.io/projects/221")
@@ -17,53 +21,63 @@ class InstaBot:
             .send_keys(password)
 		self.driver.find_element_by_xpath('/html/body/main/article/div/form/div[4]/input')\
             .click()
-	##CHOICE PROJECT PAGE
-		self.driver.get("https://intranet.hbtn.io/projects/226")
-	##GET REPO NAME
+	# CHOICE PROJECT PAGE
+		project_url = "\"intranet.hbtn.io/projects/{}\"".format(argv[1])
+		print(project_url)
+		self.driver.get("https://intranet.hbtn.io/projects/{:s}".format(argv[1]))
+		print("IF DIRECTORY IS INCORRECT WRITE DIRECTORY NAME AS 4TH ARGUMENT")
+
+	# GET REPO NAME
 		try:
-			repo_name = self.driver.find_element_by_xpath('/html/body/main/article/p[1]/small').text
+			repo_name = self.driver.find_element_by_xpath(
+			    '/html/body/main/article/p[1]/small').text
 			print(repo_name)
 			if repo_name == 'Foundations - Low-level programming & Algorithm ― Hatching out':
 				repo_name = 'holbertonschool-low_level_programming'
-			elif repo_name =='Foundations - Higher-level programming ― Python':
+			elif repo_name == 'Foundations - Higher-level programming ― Python':
 				repo_name = 'holbertonschool-higher_level_programming'
 		except NoSuchElementException:
 				pass
 
-		##try:
-		##	repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul/li[1]/code').text
-		##	print(repo_name)
-		##except NoSuchElementException:
-			##	pass
+		# try:
+		# repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul/li[1]/code').text
+		# print(repo_name)
+		# except NoSuchElementException:
+			# pass
 
-	##GET DIRECTORY NAME
+	# GET DIRECTORY NAME
 		try:
-			directory_name = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/ul[2]/li[2]/code').text
+			directory_name = self.driver.find_element_by_xpath(
+			    '/html/body/main/article/section[2]/div[1]/div/ul[2]/li[2]/code').text
 			print(directory_name)
 		except NoSuchElementException:
 				pass
 		try:
-			directory_name = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/ul/li[2]/code').text
+			directory_name = self.driver.find_element_by_xpath(
+			    '/html/body/main/article/section[2]/div[1]/div/ul/li[2]/code').text
 			print(directory_name)
 		except NoSuchElementException:
 				pass
 		try:
-			directory_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul[2]/li[2]/code').text
+			directory_name = self.driver.find_element_by_xpath(
+			    '/html/body/main/article/section/div[1]/div/ul/li[2]/code').text
 			print(directory_name)
 		except NoSuchElementException:
 				pass
-		##try:
-		##	directory_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul/li[2]/code').text
-		##	print(directory_name)
-		##except NoSuchElementException:
-			##	pass
 
-	##GET FILE NAME
+		try:
+			directory_name = self.driver.find_element_by_xpath(
+			    '/html/body/main/article/section/div[1]/div/ul[2]/li[2]/code').text
+			print(directory_name)
+		except NoSuchElementException:
+				pass
+
+	# GET FILE NAME
 
 		file_name_array = []
-	##/html/body/main/article/section[2]/div[1]/div/ul[2]/li[3]/code
-	##/html/body/main/article/section/div[1]/div/ul[2]/li[3]/code
-	##/html/body/main/article/section/div[1]/div/ul/li[3]/code
+	# /html/body/main/article/section[2]/div[1]/div/ul[2]/li[3]/code
+	# /html/body/main/article/section/div[1]/div/ul[2]/li[3]/code
+	# /html/body/main/article/section/div[1]/div/ul/li[3]/code
 		try:
 			file_name = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/ul[2]/li[3]/code').text
 			file_name_array.append(file_name)
@@ -365,16 +379,30 @@ class InstaBot:
 			file_name_array.append(file_name)
 		except NoSuchElementException:
 				pass
-##PRINT ARRAY
-		directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
-#MAKE DIRECTORY
+# PRINT ARRAY
+		try:
+			directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
+		except UnboundLocalError:
+			if len(argv) < 2:
+				print("DIRECTORY NAME UNKNOWN ENTER THE DIRECTORY NAME AS 4TH ARGUMENT")
+				print("DIRECTORY NAME UNKNOWN ENTER THE DIRECTORY NAME AS 4TH ARGUMENT")
+			else:
+				print("")
+			if len(argv) > 1:
+				print("Inserted directory manually: {:s}".format(argv[2]))
+				directory_name = argv[2]
+				directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
+			pass
+			pass
+
+# MAKE DIRECTORY
 		if not os.path.exists(directory_path):
 			os.makedirs(directory_path)
 			print("{:s} has been created".format(directory_path))
-#CD INTO DIRECTORY TO PLACE FILES IN IT
+# CD INTO DIRECTORY TO PLACE FILES IN IT
 		os.chdir(directory_path)
 		print("cd into {:s}".format(directory_path))
-##MAKE FILES AND APPEND
+# MAKE FILES AND APPEND
 		print("Project files created:")
 		print(file_name_array)
 		for file_name_array in file_name_array:
@@ -387,7 +415,7 @@ class InstaBot:
 		f = open('README.md', "a")
 		f.write("README.md")
 		print("README.md made")
-##FIND MAIN FILES SECTION/DIV[1]/div/pre/code
+# FIND MAIN FILES SECTION/DIV[1]/div/pre/code
 		if repo_name == 'holbertonschool-low_level_programming':
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/pre/code').text
@@ -531,7 +559,7 @@ class InstaBot:
 			except NoSuchElementException:
 					pass
 
-##FIND MAIN FILES section[2]/div[1]/div/pre/code
+# FIND MAIN FILES section[2]/div[1]/div/pre/code
 		if repo_name == 'holbertonschool-low_level_programming':
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/pre/code').text
@@ -674,7 +702,7 @@ class InstaBot:
 			except NoSuchElementException:
 					pass
 			print("{:d} main.c files created".format(main_C_file_count))
-#MAKE MAIN.PY FILES
+# MAKE MAIN.PY FILES
 		else:
 			try:
 				main_file = self.driver.find_element_by_xpath('/html/body/main/article/section[2]/div[1]/div/pre/code').text
@@ -818,8 +846,8 @@ class InstaBot:
 			except NoSuchElementException:
 					pass
 			print("{:d} main.py files created".format(main_PY_file_count))
-##EDIT MAIN FILES
-##EDIT MAIN.PY
+# EDIT MAIN FILES
+# EDIT MAIN.PY
 		mainPY_file_array = []
 		mainPY_file_array.append('0-main.py')
 		mainPY_file_array.append('1-main.py')
