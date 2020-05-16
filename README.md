@@ -1,6 +1,6 @@
 ## HIPPOSWEEPER
 ### Description
-A selenium script that creates repositories, directory names, project files, and main.c/main.py files, and very pretty README files
+A selenium script that creates repositories, directories, project files, and main.c/main.py files, and very pretty README files
 This script doesn't just create files...it fills the file with an include header line, comment bullets, and the prototype(if its a C project)
 
 Example:
@@ -108,7 +108,6 @@ GOOD LUCK WITH YOUR PROJECT
 
 
 /users/qpv2/holbertonschool-higher_level_programming/0x03-python-data_structures
-```
 ```
 
 
