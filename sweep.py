@@ -375,7 +375,6 @@ class InstaBot:
         f = open('README.md', "a")
 # CREATE README
         question_title_array = question_title_array_without_mandatory
-        print(question_title_array)
         try:
             f.write(
                 "### [{}](./{}) \n* {}\n".format(question_title_array[0], readme_file_name_array[0], question_description_array[0]))
