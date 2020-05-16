@@ -1,6 +1,6 @@
 ## HIPPOSWEEPER
 ### Description
-A selenium script that creates repositories, directory names, project files, and main.c/main.py files.
+A selenium script that creates repositories, directory names, project files, and main.c/main.py files, and very pretty README files
 
 This script is going to open up chrome or a differnt webdriver or your choice, go to the intranet site, log in for you, go to the project page, and get the information it needs.
 
@@ -44,24 +44,42 @@ This code was compiled this way:
 ###### Example usage
 
 ```
-dtvan@dtvangogh:SWEEPER$ python3 sweep.py 243
+dtvan@dtvangogh:SWEEPER$ python3 sweep.py 241
 
-"intranet.hbtn.io/projects/243"
-IF DIRECTORY IS INCORRECT WRITE DIRECTORY NAME AS 4TH ARGUMENT
-Foundations - Higher-level programming ― Python
-0x04-python-more_data_structures
-matrix
-matrix
-0x04-python-more_data_structures
-/users/qpv2/holbertonschool-higher_level_programming/0x04-python-more_data_structures has been created
-cd into /users/qpv2/holbertonschool-higher_level_programming/0x04-python-more_data_structures
+
+Welcome to the HippoSweeper, Holberton's #1 Project Creator
+
+
+You have selected "intranet.hbtn.io/projects/241"
+0x03-python-data_structures
+cd into /users/qpv2/holbertonschool-higher_level_programming/0x03-python-data_structures
 Project files created:
-['0-square_matrix_simple.py', '1-search_replace.py', '2-uniq_add.py', '3-common_elements.py', '4-only_diff_elements.py', '5-number_keys.py', '6-print_sorted_dictionary.py',
- '7-update_dictionary.py', '8-simple_delete.py', '9-multiply_by_2.py', '10-best_score.py', '11-mutiply_list_map.py', 'roman_string', '1-search_replace.py', '2-uniq_add.py',
- '3-common_elements.py', '4-only_diff_elements.py', '5-number_keys.py', '6-print_sorted_dictionary.py', '7-update_dictionary.py', '8-simple_delete.py', '9-multiply_by_2.py'
-, '10-best_score.py', '11-mutiply_list_map.py', 'roman_string', '0-square_matrix_simple.py', 'search', 'search', '2-uniq_add.py', '3-common_elements.py', '4-only_diff_elements.py', '5-number_keys.py', '6-print_sorted_dictionary.py', 'value', '8-simple_delete.py', '9-multiply_by_2.py', 'None', '11-mutiply_list_map.py', 'roman_string']
-README.md made
-13 main.py files created
+
+
+0-print_list_integer.py
+1-element_at.py
+2-replace_in_list.py
+3-print_reversed_list_integer.py
+4-new_in_list.py
+5-no_c.py
+6-print_matrix_integer.py
+7-add_tuple.py
+8-multiple_returns.py
+9-max_integer.py
+10-divisible_by_2.py
+11-delete_at.py
+12-switch.py
+100-print_python_list_info.c
+13-is_palindrome.c, lists.h
+
+
+15 main.py files created
+
+
+GOOD LUCK WITH YOUR PROJECT
+
+
+/users/qpv2/holbertonschool-higher_level_programming/0x03-python-data_structures
 ```
 ```
 
