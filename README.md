@@ -1,7 +1,36 @@
 ## HIPPOSWEEPER
 ### Description
 A selenium script that creates repositories, directory names, project files, and main.c/main.py files, and very pretty README files
+This script doesn't just create files...it fills the file with an include header line, comment bullets, and the prototype(if its a C project)
 
+Example:
+```
+dtvan@dtvangogh:0x04-more_functions_nested_loops$ ls
+0                      2-main.c               7-main.c
+0-isupper.c            2-mul.c                7-print_diagonal.c
+0-main.c               3-main.c               8-main.c
+1-isdigit.c            3-print_numbers.c      8-print_square.c
+1-main.c               4-main.c               9-fizz_buzz.c
+10-main.c              4-print_most_numbers.c 9-main.c
+10-print_triangle.c    5-main.c               README.md
+100-prime_factor.c     5-more_numbers.c       holberton.h
+101-print_number.c     6-main.c
+12-main.c              6-print_line.c
+dtvan@dtvangogh:0x04-more_functions_nested_loops$ cat 10-print_triangle.c
+#include holberton.h
+
+/**
+*print_triangle-
+*
+*
+*
+*Return:
+**/
+
+void print_triangle(int size);
+dtvan@dtvangogh:0x04-more_functions_nested_loops$
+```
+```
 This script is going to open up chrome or a differnt webdriver or your choice, go to the intranet site, log in for you, go to the project page, and get the information it needs.
 
 ### Prerequisites
