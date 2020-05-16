@@ -30,7 +30,6 @@ dtvan@dtvangogh:0x04-more_functions_nested_loops$ cat 10-print_triangle.c
 void print_triangle(int size);
 dtvan@dtvangogh:0x04-more_functions_nested_loops$
 ```
-```
 This script is going to open up chrome or a differnt webdriver or your choice, go to the intranet site, log in for you, go to the project page, and get the information it needs.
 
 ### Prerequisites
