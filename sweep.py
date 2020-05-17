@@ -34,13 +34,12 @@ class InstaBot:
         try:
             readme_repo_name = self.driver.find_element_by_xpath(
                 '/html/body/main/article/p[1]/small').text
-            if readme_repo_name == 'Foundations - Low-level programming & Algorithm ― Hatching out':
+            if readme_repo_name[14] == 'L':
                 repo_name = 'holbertonschool-low_level_programming'
-            elif readme_repo_name == 'Foundations - Higher-level programming ― Python':
-                repo_name = 'holbertonschool-higher_level_programming'
+            elif readme_repo_name[14] == 'H':
+                repo_name = 'holbertonschool-low_level_programming'
         except NoSuchElementException:
             pass
-
         # try:
         # repo_name = self.driver.find_element_by_xpath('/html/body/main/article/section/div[1]/div/ul/li[1]/code').text
         # print(repo_name)
@@ -103,7 +102,6 @@ class InstaBot:
                     pass
             except NoSuchElementException:
                 pass
-        for i in range(0, 21):
             try:
                 file_name = self.driver.find_element_by_xpath(
                     '/html/body/main/article/section[2]/div[{:d}]/div/ul[3]/li[3]/code'.format(i)).text
@@ -113,7 +111,7 @@ class InstaBot:
                     pass
             except NoSuchElementException:
                 pass
-        for i in range(0, 21):
+
             try:
                 file_name = self.driver.find_element_by_xpath(
                     '/html/body/main/article/section/div[{:d}]/div/ul[2]/li[3]/code'.format(i)).text
@@ -124,10 +122,18 @@ class InstaBot:
             except NoSuchElementException:
                 pass
 
-        for i in range(0, 21):
             try:
                 file_name = self.driver.find_element_by_xpath(
                     '/html/body/main/article/section/div[{:d}]/div/ul/li[3]/code'.format(i)).text
+                if any(char.isdigit() for char in file_name):
+                    file_name_array.append(file_name)
+                else:
+                    pass
+            except NoSuchElementException:
+                pass
+            try:
+                file_name = self.driver.find_element_by_xpath(
+                    '/html/body/main/article/section[2]/div[{:d}]/div/ul[5]/li[3]/code'.format(i)).text
                 if any(char.isdigit() for char in file_name):
                     file_name_array.append(file_name)
                 else:
@@ -190,30 +196,49 @@ class InstaBot:
                 #remove_mandatory = question_title_array[:-(len(substring))]
                # question_title_array_without_mandatory.append(remove_mandatory)
 
-# PRINT ARRAY
-        try:
-            directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
-        except UnboundLocalError:
-            pass
-            # if len(argv) < 2:
-            # print("DIRECTORY NAME UNKNOWN ENTER THE DIRECTORY NAME AS 4TH ARGUMENT")
-            # print("DIRECTORY NAME UNKNOWN ENTER THE DIRECTORY NAME AS 4TH ARGUMENT")
-        #	else:
-            #	print("")
-            # if len(argv) > 1:
-            # print("Inserted directory manually: {:s}".format(argv[2]))
-            #	directory_name = argv[2]
-            #	directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
-
+        directory_path = '/users/qpv2/' + repo_name + '/' + directory_name
 # MAKE DIRECTORY
         if not os.path.exists(directory_path):
-            os.makedirs(directory_path)
-            print("Creating: {:s}".format(directory_path))
+                os.makedirs(directory_path)
+                print("Creating: {:s}".format(directory_path))
 # CD INTO DIRECTORY TO PLACE FILES IN IT
         os.chdir(directory_path)
         print("cd into {:s}".format(directory_path))
 # MAKE FILES AND APPEND
         file_name_array = list(dict.fromkeys(file_name_array))
+##MULTIPLE FILES IN ONE PROBLEM
+        try:
+            index = [idx for idx, s in enumerate(file_name_array) if ',' in s][0]
+            find_comma = file_name_array[index].find(',')
+            no_comma = file_name_array[index][:find_comma]
+            second_file = file_name_array[index][find_comma + 2:]
+            print(second_file)
+            if (',' not in second_file):
+                file_name_array.append(second_file)
+            find_comma = second_file.find(',')
+            second_file_no_comma = second_file[:find_comma]
+            file_name_array.append(second_file_no_comma)
+            file_name_array[index] = no_comma
+            locate_space = second_file.find(' ')
+            third_file = second_file[locate_space + 1:]
+            if (',' not in third_file):
+                file_name_array.append(third_file)
+            find_comma = third_file.find(',')
+            third_file_alone = third_file[:find_comma]
+            if (',' not in third_file_alone):
+                file_name_array.append(third_file_alone)
+            find_space = third_file.find(' ')
+            fourth_file = third_file[find_space + 1:]
+            if (',' not in fourth_file):
+                file_name_array.append(fourth_file)
+        except IndexError:
+            pass
+    ##FILTER FILE NAME ARRAY
+        file_name_array = list(dict.fromkeys(file_name_array))
+        file_name_array = [x for x in file_name_array if len(x) > 5]
+
+
+         #       edited_comment_prototype = edited_comment_prototype + '-'
         number_of_project_files = len(file_name_array)
         readme_file_name_array = file_name_array
         print("--------------------------------------------------------------------------------------------")
@@ -832,14 +857,6 @@ class InstaBot:
                     pass
 
 
-
-
-
-
-
-
-
-
         for file_name_array in file_name_array:
             print(file_name_array)
             if repo_name == 'holbertonschool-higher_level_programming':
@@ -848,8 +865,12 @@ class InstaBot:
 ##make HOLBERTON.H
         if repo_name == 'holbertonschool-low_level_programming':
             with open("holberton.h", "w") as f:
+                f.write("#ifndef HOLBERTON_\n#define HOLBERTON_\n\n#include <stdlib.h>\n#include <stdio.h>\n#include <string.h>\n#include <unistd.h>\n#include <stdarg.h>\n#include <sys/types.h>\n#include <fcntl.h>\n\n")
+            with open("holberton.h", "a") as f:
                 for prototype_array in prototype_array:
                     f.write("{:s}\n".format(prototype_array))
+            with open("holberton.h", "a") as f:
+                f.write("#endif\n")
 # FIND MAIN.C FILES SECTION/DIV[1]/div/pre/code
 # if any(char.isdigit() for char in directory_search):
         # directory_name = directory_search
@@ -893,26 +914,17 @@ class InstaBot:
 
 # MAKE MAIN.PY FILES
         else:
-            for i in range(0, number_of_project_files + 2):
+            for i in range(1, number_of_project_files + 2):
                 try:
                     main_file = self.driver.find_element_by_xpath(
-                        '/html/body/main/article/section[2]/div[{:d}]]/div/pre/code'.format(i)).text
+                        '/html/body/main/article/section[2]/div[{:d}]/div/pre/code'.format(i)).text
                     main_PY_file_count = 0
                     main_PY_file_count += 1
                     f = open("{:d}-main.py".format(i - 1), "w+")
                     f.write(main_file)
                 except NoSuchElementException:
                     pass
-            for i in range(0, number_of_project_files + 2):
-                try:
-                    main_file = self.driver.find_element_by_xpath(
-                        '/html/body/main/article/section/div[{:d}]]/div/pre/code'.format(i)).text
-                    main_PY_file_count = 0
-                    main_PY_file_count += 1
-                    f = open("{:d}-main.py".format(i - 1), "w+")
-                    f.write(main_file)
-                except NoSuchElementException:
-                    pass
+
 
             print('\n')
             print("{:d} main.py files created".format(number_of_project_files))
@@ -944,7 +956,7 @@ class InstaBot:
                 lookup = './'
                 myFile = open(mainPY_file_array)
                 for gcc_location, line in enumerate(myFile, 1):
-                    if lookup in line:
+                   if lookup in line:
                         location_minus1 = gcc_location - 1
                 lookup = '$ cat'
                 myFile = open(mainPY_file_array)
