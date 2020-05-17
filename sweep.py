@@ -37,7 +37,7 @@ class InstaBot:
             if readme_repo_name[14] == 'L':
                 repo_name = 'holbertonschool-low_level_programming'
             elif readme_repo_name[14] == 'H':
-                repo_name = 'holbertonschool-low_level_programming'
+                repo_name = 'holbertonschool-higher_level_programming'
         except NoSuchElementException:
             pass
         # try:
