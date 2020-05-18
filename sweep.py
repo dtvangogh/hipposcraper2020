@@ -236,632 +236,72 @@ class InstaBot:
     ##FILTER FILE NAME ARRAY
         file_name_array = list(dict.fromkeys(file_name_array))
         file_name_array = [x for x in file_name_array if len(x) > 5]
+        file_name_array = [x for x in file_name_array if x[-1] != '.']
+        file_name_array = [x for x in file_name_array if x[0] != '.']
 
-
-         #       edited_comment_prototype = edited_comment_prototype + '-'
         number_of_project_files = len(file_name_array)
         readme_file_name_array = file_name_array
         print("--------------------------------------------------------------------------------------------")
         print("Project files created:")
         print('--------------------------------------------------------------------------------------------')
+ ##MAKE C FILES
         if repo_name == 'holbertonschool-low_level_programming':
+            i = 1;
+            for file_name_array in file_name_array:
+                print(file_name_array)
                 try:
                     find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[1]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[1]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[1]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[1]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
+                    '/html/body/main/article/section[2]/div[{:d}]/div/ul[1]/li/code'.format(i)).text
+                except ';' not in find_prototype:
+                    try:
+                        find_prototype = self.driver.find_element_by_xpath(
+                        '/html/body/main/article/section[2]/div[{:d}]/div/ul[1]/li[1]/code'.format(i)).text
+                    except ';' not in find_prototype:
+                        try:
+                            find_prototype = self.driver.find_element_by_xpath(
+                            '/html/body/main/article/section/div[{:d}]/div/ul[1]/li/code'.format(i)).text
+                        except ';' not in find_prototype:
+                            try:
+                                find_prototype = self.driver.find_element_by_xpath(
+                                '/html/body/main/article/section/div[{:d}]/div/ul[1]/li[1]/code'.format(i)).text
+                            except ';' not in find_prototype:
+                                find_prototype = 'no prototype'
+                i += 1
+##EDIT PROTOTYPE FOR COMMENTS SECTION
                 copy_of_find_prototype = find_prototype
                 find_space = copy_of_find_prototype.find(' ')
                 find_parentheses = copy_of_find_prototype.find('(')
                 edited_comment_prototype = copy_of_find_prototype[find_space + 1:find_parentheses]
                 edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[0]), "w") as f:
+                with open("{}".format(file_name_array), "w") as f:
                         f.write(
                         "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[2]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[2]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[2]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[2]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                copy_of_find_prototype = find_prototype
-                find_space = copy_of_find_prototype.find(' ')
-                find_parentheses = copy_of_find_prototype.find('(')
-                edited_comment_prototype = copy_of_find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[1]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[3]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[3]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[3]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[3]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[2]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[4]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[4]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[4]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[4]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[3]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[5]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[5]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[5]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[5]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[4]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[6]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[6]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[6]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[6]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[5]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[7]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[7]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[7]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[7]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[6]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[8]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[8]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[8]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[8]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[7]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[9]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[9]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[9]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[9]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[8]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[10]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[10]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[10]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[10]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[9]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[11]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[11]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[11]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[11]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[10]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[12]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[12]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[12]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[12]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[11]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[13]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[13]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[13]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[13]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[12]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[14]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[14]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[14]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[14]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[13]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[15]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[15]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[15]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[15]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[14]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[16]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[16]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[16]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[16]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[15]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[17]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[17]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[17]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[17]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[16]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[18]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section[2]/div[18]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[18]/div/ul[1]/li/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                try:
-                    find_prototype = self.driver.find_element_by_xpath(
-                    '/html/body/main/article/section/div[18]/div/ul[1]/li[1]/code').text
-                except NoSuchElementException:
-                    find_prototype = 'no prototype'
-                if semicolon not in find_prototype:
-                    find_prototype = 'no prototype'
-                find_space = find_prototype.find(' ')
-                find_parentheses = find_prototype.find('(')
-                edited_comment_prototype = find_prototype[find_space + 1:find_parentheses]
-                edited_comment_prototype = edited_comment_prototype + '-'
-                try:
-                    with open("{}".format(file_name_array[17]), "w") as f:
-                        f.write(
-                        "#include holberton.h\n\n/**\n*{:s}\n*\n*\n*\n*Return:\n**/\n\n{:s}\n".format(edited_comment_prototype, find_prototype))
-                except IndexError:
-                    pass
-
-
+    ##MAKE PY FILES
+        i = 1
         for file_name_array in file_name_array:
-            print(file_name_array)
+            try:
+                find_prototype = self.driver.find_element_by_xpath(
+                '/html/body/main/article/section[2]/div[{:d}]/div/ul[1]/li/code'.format(i)).text
+            except NoSuchElementException:
+                try:
+                    find_prototype = self.driver.find_element_by_xpath(
+                    '/html/body/main/article/section[2]/div[{:d}]/div/ul[1]/li[1]/code'.format(i)).text
+                except NoSuchElementException:
+                    try:
+                        find_prototype = self.driver.find_element_by_xpath(
+                        '/html/body/main/article/section/div[{:d}/div/ul[1]/li/code'.format(i)).text
+                    except NoSuchElementException:
+                        try:
+                            find_prototype = self.driver.find_element_by_xpath(
+                            '/html/body/main/article/section/div[{:d}]/div/ul[1]/li[1]/code'.format(i)).text
+                        except NoSuchElementException:
+                            find_prototype = 'no prototype'
+            if ':' not in find_prototype:
+                    find_prototype = 'no prototype'
+            i += 1
             if repo_name == 'holbertonschool-higher_level_programming':
                 with open("{}".format(file_name_array), "w") as f:
-                    f.write("#!/usr/bin/python3\n")
+                    f.write("#!/usr/bin/python3\n{:s}\n".format(find_prototype))
 ##make HOLBERTON.H
         if repo_name == 'holbertonschool-low_level_programming':
             with open("holberton.h", "w") as f:
@@ -923,7 +363,15 @@ class InstaBot:
                     f = open("{:d}-main.py".format(i - 1), "w+")
                     f.write(main_file)
                 except NoSuchElementException:
-                    pass
+                    try:
+                        main_file = self.driver.find_element_by_xpath(
+                            '/html/body/main/article/section/div[{:d}]/div/pre/code'.format(i)).text
+                        main_PY_file_count = 0
+                        main_PY_file_count += 1
+                        f = open("{:d}-main.py".format(i - 1), "w+")
+                        f.write(main_file)
+                    except NoSuchElementException:
+                        pass
 
 
             print('\n')
