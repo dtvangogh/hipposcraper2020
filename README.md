@@ -42,7 +42,7 @@ sudo mv ~/Downloads/Chromedriver /usr/local/bin
 ```
 pip3 install selenium
 ```
-make a .py file and see if it works. run python3 filename
+make this .py file and see if it works. run python3 filename
 ```
 from selenium import webdriver
 
