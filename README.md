@@ -39,6 +39,9 @@ unzip chromedriver so that file appears in downloads folder
 ```
 sudo mv ~/Downloads/Chromedriver /usr/local/bin
 ```
+```
+pip3 install selenium
+```
 if this doesn't work try typing out the ~ with the full path
 if you get stuck watch this video:
 
