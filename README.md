@@ -42,6 +42,19 @@ sudo mv ~/Downloads/Chromedriver /usr/local/bin
 ```
 pip3 install selenium
 ```
+make a .py file and see if it works. run python3 filename
+```
+from selenium import webdriver
+
+
+class intranetbot:
+	def __init__(self):
+		self.driver = webdriver.Chrome()
+		self.driver.get("instagram.com")
+
+
+intranetbot()
+```
 if this doesn't work try typing out the ~ with the full path
 if you get stuck watch this video:
 
