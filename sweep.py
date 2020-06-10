@@ -86,48 +86,33 @@ class InstaBot:
             try:
                 file_name = self.driver.find_element_by_xpath(
                     '/html/body/main/article/section[2]/div[{:d}]/div/ul[2]/li[3]/code'.format(i)).text
-                if any(char.isdigit() for char in file_name):
-                    file_name_array.append(file_name)
-                else:
-                    pass
+                file_name_array.append(file_name)
             except NoSuchElementException:
                 pass
             try:
                 file_name = self.driver.find_element_by_xpath(
                     '/html/body/main/article/section[2]/div[{:d}]/div/ul[3]/li[3]/code'.format(i)).text
-                if any(char.isdigit() for char in file_name):
-                    file_name_array.append(file_name)
-                else:
-                    pass
+                file_name_array.append(file_name)
             except NoSuchElementException:
                 pass
 
             try:
                 file_name = self.driver.find_element_by_xpath(
                     '/html/body/main/article/section/div[{:d}]/div/ul[2]/li[3]/code'.format(i)).text
-                if any(char.isdigit() for char in file_name):
-                    file_name_array.append(file_name)
-                else:
-                    pass
+                file_name_array.append(file_name)
             except NoSuchElementException:
                 pass
 
             try:
                 file_name = self.driver.find_element_by_xpath(
                     '/html/body/main/article/section/div[{:d}]/div/ul/li[3]/code'.format(i)).text
-                if any(char.isdigit() for char in file_name):
-                    file_name_array.append(file_name)
-                else:
-                    pass
+                file_name_array.append(file_name)
             except NoSuchElementException:
                 pass
             try:
                 file_name = self.driver.find_element_by_xpath(
                     '/html/body/main/article/section[2]/div[{:d}]/div/ul[5]/li[3]/code'.format(i)).text
-                if any(char.isdigit() for char in file_name):
-                    file_name_array.append(file_name)
-                else:
-                    pass
+                file_name_array.append(file_name)
             except NoSuchElementException:
                 pass
 # GET PROTOTYPE
@@ -233,6 +218,9 @@ class InstaBot:
         file_name_array = [x for x in file_name_array if len(x) < 32]
         file_name_array = [x for x in file_name_array if x[0] != '.']
         file_name_array = [x for x in file_name_array if x[-1] != 'x']
+        file_name_array = [x for x in file_name_array if '=' not in x]
+        file_name_array = [x for x in file_name_array if '_' not in x]
+        file_name_array = [x for x in file_name_array if '<' not in x]
     ##Make file_name_array2
         file_name_array2 = []
         file_name_array2 = [x for x in file_name_array if '/' in x]
@@ -315,6 +303,7 @@ class InstaBot:
         try:
             first_element = file_name_array2[0]
             directory2 = first_element[0:(first_element.find('/'))]
+            print(directory2)
             directory_path2 = directory_path + '/' + directory2
             if not os.path.exists(directory_path2):
                 os.makedirs(directory_path2)
@@ -365,7 +354,7 @@ class InstaBot:
                     except FileNotFoundError:
                         pass
                 except NoSuchElementException:
-                    for i in range(1, number_of_project_files + 2):
+                    for i in range(1, 22):
                         try:
                             main_file = self.driver.find_element_by_xpath(
                                 '/html/body/main/article/section[2]/div[{:d}]/div/pre/code'.format(i)).text
@@ -384,7 +373,7 @@ class InstaBot:
 # MAKE MAIN.PY FILES
         if repo_name != 'holbertonschool-low_level_programming':
             main_file_name_array = []
-            for i in range(1, number_of_project_files + 2):
+            for i in range(1, 22):
                 try:
                     main_file = self.driver.find_element_by_xpath(
                         '/html/body/main/article/section[2]/div[{:d}]/div/pre/code'.format(i)).text
